@@ -1,24 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## The deploy
+It doesn't use DB, so deploy is quite easy. You can just run 'rails s' in the console and visit localhost:3000
 
-Things you may want to cover:
+## Details
+The API client uses Net::HTTP, because we don't use retryes or any complicated way of data retrieving.
+GameService can use different RuleEngines to run. A RuleEngine should have 2 methods: parse and possible_throws.
+Rules format: "scissors->paper;paper->rock;rock->scissors", where each rule is separated with ';' and
+arrow '->' define whic element win.
 
-* Ruby version
+The rules, url to the Curb API server are set in the ENV variables or in config/srp_setting.yml (check it before change)
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+P.S. css is poor.

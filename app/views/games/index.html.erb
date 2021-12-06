@@ -1,0 +1,50 @@
+<%= javascript_pack_tag 'games' %>
+<div class="page">
+  <div><h1 class="top_header">ROCK-PAPER-SCISSORS</h1></div>
+  <div class="content"> Rock Paper Scissors is a zero sum game that is usually played by two people using their hands and no tools. The idea is to make shapes with an outstretched hand where each shape will have a certain degree of power and will lead to an outcome.</div>
+  <div class="select_bet">SELECT YOUR BET</div>
+  <div class="images"> 
+
+    <% @actions.each do |action|%>
+      <%= render partial: 'throw', locals: { action: action, text: action, additional_class: ''} %>
+    <% end %>
+  </div>
+
+  <div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+
+      <div class="before-results">
+        <span class="close">&times;</span>
+        <h1>Whaiting for CURB'S choose</h1>
+
+        <div class="images">
+          <div class="modal-images">
+            <% @actions.each do |action|%>
+              <%= render partial: 'throw', locals: { action: action, text: 'your bet', additional_class: 'hidden'} %>
+            <% end %>
+          </div>
+
+          <div class="curbs">
+              <div class="first">
+              <%= image_tag 'loader', class: 'curbs_choise'%>
+              </div>
+              <div class="second">
+            <%= image_tag 'curb_logo'%>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-modal-content hidden">
+        <span class="close">&times;</span>
+        <h1 class="result-text">TEST</h1>
+        <div class="modal-images">
+          <% @actions.each do |action|%>
+            <%= render partial: 'throw', locals: { action: action, text: "Curb with #{action} ", additional_class: 'result hidden'} %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

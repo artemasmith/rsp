@@ -1,0 +1,8 @@
+<div class="image_choise throw_click <%= additional_class%>" data-action="<%= action %>">
+  <div class="first">
+    
+      <%= image_tag("#{action.capitalize}", class: 'throw')%>
+    
+  </div>
+  <div class="second" data-text="<%= text.split(' ')[0] + " #{action}" if additional_class.include?('result')%>"><%= text %></div>
+</div>
