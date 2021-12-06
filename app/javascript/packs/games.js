@@ -6,9 +6,6 @@ window.onload = function () {
 
   for (let btn of btns) {
     btn.onclick = function () {
-      // modal.style.display = "block";
-      // console.log("action = " + btn.getAttribute('data-action'));
-      // show_your_bet(btn.getAttribute('data-action'));
       make_a_bet(btn);
     }
   }
@@ -18,7 +15,7 @@ window.onload = function () {
     modal.style.display = "block";
     
     let action = btn.getAttribute('data-action');
-    console.log("action = " + action);
+
     show_your_bet(action);
     send_bet(action);
   }
@@ -30,9 +27,7 @@ window.onload = function () {
   }
 
   let show_your_bet = function(action) {
-    console.log('action = ' + action);
     let your_throw = document.querySelectorAll(".hidden[data-action='" + action + "']")[0];
-    console.log("your throw" + your_throw);
     your_throw.classList.remove('hidden');
     your_throw.classList.add('selected');
   }
@@ -49,15 +44,42 @@ window.onload = function () {
   }
 
   let show_result = function(result) {
+    // debugger;
     document.getElementsByClassName('before-results')[0].classList.add('hidden');
     document.getElementsByClassName('result-modal-content')[0].classList.remove('hidden');
 
-    document.getElementsByClassName('result-text')[0].innerHTML = JSON.parse(result)['result'];
+    const parsed_result = JSON.parse(result);
+    const service_throw = parsed_result['service_throw'];
+    document.getElementsByClassName('result-text')[0].innerHTML = "You " + parsed_result['result'];
+    const your_throw = document.querySelectorAll(".result.hidden[data-action='" + service_throw + "']")[0];
+
+    your_throw.classList.remove('hidden');
+    const text = document.querySelectorAll(".second[data-text='Curb " + parsed_result['service_throw'] + "']")[0];
+
+    update_game_status_text(text, parsed_result['result']);
+  }
+
+  let update_game_status_text = function (text_field, result) {
+    text_field.innerHTML = text_field.innerHTML.replaceAll('won', '');
+    text_field.innerHTML = text_field.innerHTML.replaceAll('lost', '');
+    text_field.innerHTML = text_field.innerHTML.replaceAll('tie', '');
+
+    if (result === 'win') {
+      text_field.innerHTML += "lost";
+    } else if (result === 'tie') {
+      text_field.innerHTML += "tie";
+    } else if (result === 'loose') {
+      text_field.innerHTML += 'won';
+    }
   }
 
   let hide_result_show_wait_modal = function() {
     document.getElementsByClassName('before-results')[0].classList.remove('hidden');
     document.getElementsByClassName('result-modal-content')[0].classList.add('hidden');
+    const throws = document.getElementsByClassName("result");
+    for (let your_throw of throws) {
+      your_throw.classList.add('hidden');
+    }
   }
 
   // Get the <span> element that closes the modal

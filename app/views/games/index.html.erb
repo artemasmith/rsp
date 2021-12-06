@@ -26,7 +26,6 @@
           </div>
 
           <div class="curbs">
-
               <div class="first">
               <%= image_tag 'loader', class: 'curbs_choise'%>
               </div>
@@ -37,27 +36,15 @@
         </div>
       </div>
 
-
       <div class="result-modal-content hidden">
         <span class="close">&times;</span>
         <h1 class="result-text">TEST</h1>
         <div class="modal-images">
           <% @actions.each do |action|%>
-            <%= render partial: 'throw', locals: { action: action, text: '', additional_class: 'result hidden'} %>
+            <%= render partial: 'throw', locals: { action: action, text: "Curb with #{action} ", additional_class: 'result hidden'} %>
           <% end %>
         </div>
       </div>
-
-
-
-
     </div>
-
-    
-
-  
-
-    
-
   </div>
 </div>

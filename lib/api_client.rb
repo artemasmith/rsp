@@ -9,15 +9,11 @@ class ApiClient
 
   def get_throw
     unparsed_result = get_request
-
-    # if unparsed_result.code == 200
-    # if unparsed_result[:code] == 200
     result = JSON.parse(unparsed_result)
-    # binding.pry
-    result.dig('body')
-    # else
-    #   false
-    # end
+    body = result.dig('body')
+
+    return false unless body
+    body
   rescue JSON::ParserError
     false
   end
@@ -25,7 +21,6 @@ class ApiClient
   private
 
   def get_request
-    # binding.pry
     Net::HTTP.get(URI(url))
   # FYI: for any net errors without listing all the Net::HTTP possible errors, just return simple hash
   rescue => e

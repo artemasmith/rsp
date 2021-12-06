@@ -4,5 +4,5 @@
       <%= image_tag("#{action.capitalize}", class: 'throw')%>
     
   </div>
-  <div class="second"><%= text %></div>
+  <div class="second" data-text="<%= text.split(' ')[0] + " #{action}" if additional_class.include?('result')%>"><%= text %></div>
 </div>

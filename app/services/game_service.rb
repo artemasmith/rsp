@@ -5,7 +5,7 @@ class GameService
 
   def call(user_throw)
     service_throw = get_service_throw
-    compare_throws(user_throw, service_throw)
+    { result: compare_throws(user_throw, service_throw), service_throw: service_throw }
   end
 
   private
