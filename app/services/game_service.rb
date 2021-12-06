@@ -15,8 +15,9 @@ class GameService
   def get_service_throw
     result = ApiClient.new.get_throw
     unless result
-      get_random_throw
+      return get_random_throw
     end
+    result
   end
 
   def compare_throws(t1, t2)

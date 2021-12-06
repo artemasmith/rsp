@@ -1,0 +1,9 @@
+production:
+  url: https://5eddt4q9dk.execute-api.us-east-1.amazonaws.com/rps-stage/throw
+  throws: scissors->paper;paper->rock;rock->scissors
+development:
+  url: https://private-anon-2f1d33b0ee-curbrockpaperscissors.apiary-mock.com/rps-stage/throw
+  throws: scissors->paper;paper->rock;rock->scissors
+test:
+  url: https://example.com/throw
+  throws: scissors->paper;paper->rock;rock->scissors
